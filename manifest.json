@@ -1,0 +1,35 @@
+{
+    "manifest_version": 2,
+    "name": "Webpage Design Manipulator",
+    "version": "0.1",
+    "description": "An Extention that, once the html DOM is loaded, will alter the webpage in ways that will help the user better access the website",
+
+    "browser_action": {
+        "default_popup" : "popup/popup.html"
+    },
+    "permissions": [
+        "contextMenus",
+        "storage",
+        "cookies"
+    ],
+    "background" : {
+        "scripts": ["backgroundScripts/apiRequester.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [ 
+                    "contentScripts/nightmode.js",
+                    "contentScripts/reducedLightMode.js",
+                    "contentScripts/cssInjection.js",
+                    "contentScripts/sendHtmlToApi.js",
+                    "contentScripts/sendCssToApi.js", 
+                    "contentScripts/textModifier.js",
+                    "contentScripts/apiRequester.js"],
+            "run_at": "document_end"
+        }
+    ]
+}

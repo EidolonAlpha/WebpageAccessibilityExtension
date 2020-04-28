@@ -18,12 +18,13 @@ chrome.runtime.onMessage.addListener(
 );
 
 function getCSSInjectionRules(){
-    getUserIdFromStoreage();
-    console.log("User id " + userId);
-    if (userId == undefined) {
-        userId = 61;
-    }
-    getCssToInject(userId);
+    getUserIdFromStoreage().then(function getCssForUser() {
+        console.log("User id " + userId);
+        if (userId == undefined) {
+            userId = 61;
+        }
+        getCssToInject(userId);
+    });
 }
 
 function getCssToInject(userId) {
